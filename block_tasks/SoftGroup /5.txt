@@ -1,0 +1,57 @@
+MySQL
+
+1) create database solution;
+2) use solution;
+3) Draw tables structure of DB
+
+Users table – name, email, birthday
+
+ create table users (
+ id_user int (10) AUTO_INCREMENT,
+ name varchar(20) NOT NULL,
+ email varchar(50) NOT NULL,
+ password varchar(15) NOT NULL,
+ birthday date,
+ PRIMARY KEY (id_user)
+ );
+
+Posts table – title, body
+
+ create table posts (
+ id_post int (10) AUTO_INCREMENT,
+ id_author int (10) NOT NULL,
+ title text NOT NULL,
+ body text NOT NULL,
+ PRIMARY KEY (id_post),
+ FOREIGN KEY (id_author) REFERENCES users (id_user)
+ );
+
+4)Information content
+
+Information content Users table
+
+ INSERT INTO  users  VALUES ('1', 'Ivan', 'example@mail.ru', '1234', '1996-01-08');
+ INSERT INTO  users  VALUES ('2', 'Ivan12', 'examdple@mail.ru', '1ds234', '2000-01-08');
+ INSERT INTO  users  VALUES ('3', 'Katy', 'exame@mail.ru', '1ds34', '1990-01-08');
+ INSERT INTO  users  VALUES ('4', 'Kty', 'examdsfe@mail.ru', '1ds34', '2005-01-08');
+
+Information content Posts table
+
+ INSERT INTO  posts  VALUES ('120', '1', 'exampleIvan', 'textEcample');
+ INSERT INTO  posts  VALUES ('121', '1', 'exampleIvan2', 'textEcample');
+ INSERT INTO  posts  VALUES ('130', '2', 'exampleIvan12', 'textEcample');
+ INSERT INTO  posts  VALUES ('131', '2', 'examsdfpleIvan12', 'textEcample');
+ INSERT INTO  posts  VALUES ('140', '3', 'examsKaty', 'textEcample');
+ INSERT INTO  posts  VALUES ('141', '3', 'examsKaty123', 'textEcample');
+ INSERT INTO  posts  VALUES ('150', '4', 'examsKty3', 'textEcample');
+
+
+5) Select
+
+a) Write SQL query to get all users older than 18 years
+SELECT * FROM users WHERE birthday <= SUBDATE(NOW(), INTERVAL 6570 DAY);
+
+b) Write SQL query to get all users with their posts.
+SELECT * FROM posts, users  WHERE id_author = id_user;
+
+
